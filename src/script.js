@@ -1,11 +1,9 @@
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import * as THREE from 'three';
-import GUI from 'lil-gui';
-import { distance } from 'three/examples/jsm/nodes/Nodes.js';
+import { setupGUI } from './guiConfig';
 
 const canvas = document.querySelector('canvas.webgl'); // Canvas
 const scene = new THREE.Scene(); // Scene
-const gui = new GUI(); // Debug
 
 //======================= Lights ========================
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
@@ -38,102 +36,11 @@ const spotLight = new THREE.SpotLight(
 spotLight.position.set(0, 2, 3);
 scene.add(spotLight);
 
-const ambientLights = gui.addFolder('AmbientLight').close();
-const directionalLights = gui.addFolder('DirectionalLight').close();
-const hemisphereLights = gui.addFolder('HemisphereLight').close();
-const pointLights = gui.addFolder('PointLight').close();
-const rectAreaLights = gui.addFolder('RectAreaLight').close();
-const spotLights = gui.addFolder('SpotLight').close();
+spotLight.target.position.x = -0.75;
+scene.add(spotLight.target);
 
-ambientLights
-  .add(ambientLight, 'intensity')
-  .min(0)
-  .max(1)
-  .step(0.001)
-  .name('intensity');
-  
-directionalLights
-  .add(directionalLight, 'intensity')
-  .min(0)
-  .max(2)
-  .step(0.001)
-  .name('intensity');
-
-hemisphereLights
-  .add(hemisphereLight, 'intensity')
-  .min(0)
-  .max(2)
-  .step(0.001)
-  .name('intensity');
-
-pointLights
-  .add(pointLight, 'intensity')
-  .min(0)
-  .max(2)
-  .step(0.001)
-  .name('intensity');
-pointLights
-  .add(pointLight, 'distance')
-  .min(0)
-  .max(20)
-  .step(0.01)
-  .name('distance');
-pointLights
-  .add(pointLight, 'decay')
-  .min(0)
-  .max(5)
-  .step(0.01)
-  .name('decay');
-
-rectAreaLights
-  .add(rectAreaLight, 'intensity')
-  .min(0)
-  .max(10)
-  .step(0.01)
-  .name('intensity');
-rectAreaLights
-  .add(rectAreaLight, 'width')
-  .min(0)
-  .max(10)
-  .step(0.001)
-  .name('width');
-rectAreaLights
-  .add(rectAreaLight, 'height')
-  .min(0)
-  .max(10)
-  .step(0.001)
-  .name('height');
-
-spotLights
-  .add(spotLight, 'intensity')
-  .min(0)
-  .max(10)
-  .step(0.001)
-  .name('intensity');
-spotLights
-  .add(spotLight, 'distance')
-  .min(0)
-  .max(15)
-  .step(0.001)
-  .name('distance');
-spotLights
-  .add(spotLight, 'angle')
-  .min(0)
-  .max(1)
-  .step(0.0001)
-  .name('angle');
-spotLights
-  .add(spotLight, 'penumbra')
-  .min(0)
-  .max(2)
-  .step(0.0001)
-  .name('penumbra');
-spotLights
-  .add(spotLight, 'decay')
-  .min(0)
-  .max(2)
-  .step(0.0001)
-  .name('decay');
+// GUI Configuration
+setupGUI(scene);
 
 //======================= Objects ========================
 const material = new THREE.MeshStandardMaterial();
@@ -141,6 +48,7 @@ material.roughness = 0.4;
 
 const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.5, 32, 32), material);
 sphere.position.x = -1.5;
+console.time(sphere);
 
 const cube = new THREE.Mesh(new THREE.BoxGeometry(0.75, 0.75, 0.75), material);
 
@@ -218,4 +126,6 @@ const tick = () => {
   window.requestAnimationFrame(tick);
 };
 
+console.timeEnd(sphere);
 tick();
+
