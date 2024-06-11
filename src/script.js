@@ -48,22 +48,22 @@ const hemisphereLightHelper = new THREE.HemisphereLightHelper(
   hemisphereLight,
   0.2
 );
-scene.add(hemisphereLightHelper);
+// scene.add(hemisphereLightHelper);
 
 const directionalLightHelper = new THREE.DirectionalLightHelper(
   directionalLight,
   0.2
 );
-scene.add(directionalLightHelper);
+// scene.add(directionalLightHelper);
 
 const pointLightHelper = new THREE.PointLightHelper(pointLight, 0.2);
-scene.add(pointLightHelper);
+// scene.add(pointLightHelper);
 
 const spotLightHelper = new THREE.SpotLightHelper(spotLight);
-scene.add(spotLightHelper);
+// scene.add(spotLightHelper);
 
 const rectAreaLightHelper = new RectAreaLightHelper(rectAreaLight);
-scene.add(rectAreaLightHelper);
+// scene.add(rectAreaLightHelper);
 
 //======================= Objects ========================
 const material = new THREE.MeshStandardMaterial();
@@ -94,7 +94,7 @@ let height = window.innerHeight;
 const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 100);
 camera.position.x = 1;
 camera.position.y = 1;
-camera.position.z = 2;
+camera.position.z = 3;
 scene.add(camera);
 
 //=================== Orbit Controls =====================
