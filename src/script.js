@@ -1,6 +1,7 @@
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import * as THREE from 'three';
 import { setupGUI } from './guiConfig';
+import { RectAreaLightHelper } from 'three/examples/jsm/Addons.js';
 
 const canvas = document.querySelector('canvas.webgl'); // Canvas
 const scene = new THREE.Scene(); // Scene
@@ -41,6 +42,28 @@ scene.add(spotLight.target);
 
 // GUI Configuration
 setupGUI(scene);
+
+//========== Lights Helper
+const hemisphereLightHelper = new THREE.HemisphereLightHelper(
+  hemisphereLight,
+  0.2
+);
+scene.add(hemisphereLightHelper);
+
+const directionalLightHelper = new THREE.DirectionalLightHelper(
+  directionalLight,
+  0.2
+);
+scene.add(directionalLightHelper);
+
+const pointLightHelper = new THREE.PointLightHelper(pointLight, 0.2);
+scene.add(pointLightHelper);
+
+const spotLightHelper = new THREE.SpotLightHelper(spotLight);
+scene.add(spotLightHelper);
+
+const rectAreaLightHelper = new RectAreaLightHelper(rectAreaLight);
+scene.add(rectAreaLightHelper);
 
 //======================= Objects ========================
 const material = new THREE.MeshStandardMaterial();
@@ -128,4 +151,3 @@ const tick = () => {
 
 console.timeEnd(sphere);
 tick();
-

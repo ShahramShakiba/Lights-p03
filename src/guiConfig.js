@@ -3,7 +3,7 @@ import GUI from 'lil-gui';
 export function setupGUI(scene) {
   const gui = new GUI();
 
-  //============ Lights
+  //=== Finding Lights in the Scene based on their "type"
   const ambientLight = scene.children.find((child) => child.isAmbientLight);
   const directionalLight = scene.children.find(
     (child) => child.isDirectionalLight
