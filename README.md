@@ -16,7 +16,7 @@
 <br/> <br/> 
 
 > [!IMPORTANT]
->> - It is crucial to grasp that the project incorporates _"Three.js"_ to build a visually stunning 3D environment for experimenting with various lighting effects.
+>> - It is crucial to grasp that the project incorporates _"Three.js"_ to build a visually stunning 3D environment for experimenting with various "Lighting" effects.
 
 
 <br/><br/>
